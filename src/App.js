@@ -74,7 +74,7 @@ class App extends Component {
     return (
       <div className="App">
         <form autocomplete="off" onSubmit={this.addList}>
-          <button type="submit">
+          <button type="submit" disabled={!this.state.listTitle}>
             ADD ANOTHER LIST
           </button>
           <input onChange={this.hc}

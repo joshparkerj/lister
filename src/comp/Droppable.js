@@ -66,7 +66,7 @@ class Droppable extends Component {
           <button className="delete-button" onClick={this.removeList}>X</button>
         </div>
         <form autocomplete="off" onSubmit={this.addItem}>
-          <button type="submit">
+          <button type="submit" disabled={!this.state.item}>
             ADD ITEM TO THIS LIST
         </button>
           <input onChange={this.hc} name="item" value={this.state.item} />
