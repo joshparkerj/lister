@@ -27,6 +27,9 @@ class App extends Component {
 
   removeList = listIndex => {
     this.setState({
+      items: this.state.items.filter(e => {
+        return e.list !== this.state.listTitles[listIndex]
+      }),
       listTitles: this.state.listTitles.filter((e, i) => i !== listIndex)
     })
   }
