@@ -1,29 +1,17 @@
 import React, { Component } from 'react';
-import EventTrial from './comp/EventTrial';
-import Draggable from './comp/Draggable';
-import logo from './logo.svg';
+import Droppable from './comp/Droppable';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <EventTrial content="I am trying out events here."/>
-        <Draggable content="The quick brown fox leaps over the melted zamboni"/>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Droppable key="fox"
+          content="The quick brown fox leaps over the melted zamboni" />
+        <Droppable key="yoda"
+          content="Do or do not, there is no dark side leading to me" />
+        <Droppable key="dresden"
+          content="some kinda butchered quote or something" />
       </div>
     );
   }

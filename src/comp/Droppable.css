@@ -1,0 +1,6 @@
+.Droppable {
+  grid-column: span 1;
+  border: solid black 2px;
+  padding: 20px;
+  margin: 20px;
+}
