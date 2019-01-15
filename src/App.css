@@ -10,3 +10,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
+
+form {
+  margin: 20px;
+  margin-bottom: 0;
+}
