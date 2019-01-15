@@ -6,35 +6,39 @@ class Droppable extends Component {
   constructor() {
     super();
     this.state = {
-      items: [],
       item: ''
     }
   }
 
   addItem = () => {
-    this.setState({
-      items: [...this.state.items,this.state.item],
-      item: ''
-    })
+    this.props.addItem({
+      list: this.props.title,
+      content: this.state.item
+    });
+    this.setState({ item: '' });
   }
 
   hc = e => {
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   onDragOver = e => {
     e.preventDefault();
   }
 
-  onDrop = (e, i) => {
-    this.setState({
-      items: [...this.state.items, e.dataTransfer.getData("content")]
-    });
+  onDrop = e => {
+    const id = e.dataTransfer.getData("id");
+    this.props.moveItem(id, this.props.title);
+  }
+
+  onDragStart = (event, item) => {
+    event.dataTransfer.setData("content", item.content);
+    event.dataTransfer.setData("id", item.ID);
   }
 
   itemMapper = (e, i) => {
     return (
-      <Draggable key={i} content={e} />
+      <Draggable key={i} item={e} ods={this.onDragStart} />
     );
   }
 
@@ -42,12 +46,12 @@ class Droppable extends Component {
     return (
       <div className="Droppable"
         onDragOver={this.onDragOver}
-        onDrop={e => this.onDrop(e, this.props.key)}
+        onDrop={this.onDrop}
       >
-        <h1>{this.props.content}</h1>
+        <h1>{this.props.title}</h1>
         <button onClick={this.addItem}>ADD ITEM TO THIS LIST</button>
-        <input onChange={this.hc} name="item" value={this.state.item}/>
-        {this.state.items.map(this.itemMapper)}
+        <input onChange={this.hc} name="item" value={this.state.item} />
+        {this.props.items.map(this.itemMapper)}
       </div>
     );
   }

@@ -3,15 +3,56 @@ import Droppable from './comp/Droppable';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      listTitles: ['fox', 'yoda', 'dresden'],
+      items: [],
+      nextID: 0
+    }
+  }
+
+  addItem = item => {
+    item.ID = this.state.nextID;
+    this.setState({
+      items: [...this.state.items, item],
+      nextID: this.state.nextID + 1
+    })
+  }
+
+  moveItem = (itemID, newList) => {
+    this.setState({
+      items: this.state.items.map(e => {
+        if (e.ID === parseInt(itemID)) {
+          e.list = newList;
+        }
+        return e;
+      })
+    })
+  }
+
+  removeItem = itemID => {
+    this.setState({
+      items: this.state.items.filter(e => e.ID !== itemID)
+    })
+  }
+
+  listMapper = (title, i) => {
+    return (
+      <Droppable key={i}
+        title={title}
+        items={this.state.items.filter(e => e.list === title)}
+        addItem={this.addItem}
+        removeItem={this.removeItem}
+        moveItem={this.moveItem}
+      />
+    );
+  }
+
   render() {
     return (
       <div className="App">
-        <Droppable key="fox"
-          content="The quick brown fox leaps over the melted zamboni" />
-        <Droppable key="yoda"
-          content="Do or do not, there is no dark side leading to me" />
-        <Droppable key="dresden"
-          content="some kinda butchered quote or something" />
+        {this.state.listTitles.map(this.listMapper)}
       </div>
     );
   }
