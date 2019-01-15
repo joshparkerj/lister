@@ -36,9 +36,17 @@ class Droppable extends Component {
     event.dataTransfer.setData("id", item.ID);
   }
 
+  deleteItem = id => {
+    this.props.removeItem(id);
+  }
+
   itemMapper = (e, i) => {
     return (
-      <Draggable key={i} item={e} ods={this.onDragStart} />
+      <Draggable key={i}
+        item={e}
+        ods={this.onDragStart}
+        deleteItem={()=>this.deleteItem(e.ID)}
+      />
     );
   }
 

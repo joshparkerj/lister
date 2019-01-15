@@ -8,6 +8,7 @@ function Draggable(props) {
       onDragStart={e => props.ods(e, props.item)}
     >
       {props.item.content}
+      <button onClick={props.deleteItem}>X</button>
     </div>
   );
 }
