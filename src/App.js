@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import EventTrial from './comp/EventTrial';
+import Draggable from './comp/Draggable';
 import logo from './logo.svg';
 import './App.css';
 
@@ -6,6 +8,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <EventTrial content="I am trying out events here."/>
+        <Draggable content="The quick brown fox leaps over the melted zamboni"/>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>

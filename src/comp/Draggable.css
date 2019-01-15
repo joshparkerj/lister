@@ -1,0 +1,6 @@
+.Draggable {
+  position: absolute;
+  cursor: move;
+  border: solid black 2px;
+  padding: 15px 0;
+}

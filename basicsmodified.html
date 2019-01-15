@@ -1,0 +1,49 @@
+<!--
+    This code comes from https://www.w3schools.com/howto/howto_js_draggable.asp
+    Now modified by me.
+-->
+<!DOCTYPE html>
+<html>
+<style>
+  #mydiv {
+    position: absolute;
+    cursor: move;
+    border: solid black 2px;
+    padding: 15px;
+  }
+</style>
+
+<body>
+  <div id="mydiv">drag me</div>
+  <script>
+    dragElement(document.getElementById("mydiv"));
+    function dragElement(elmnt) {
+      const pos = [0, 0, 0, 0];
+      elmnt.onmousedown = dragMouseDown;
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos[2] = e.clientX;
+        pos[3] = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos[0] = pos[2] - e.clientX;
+        pos[1] = pos[3] - e.clientY;
+        pos[2] = e.clientX;
+        pos[3] = e.clientY;
+        elmnt.style.top = (elmnt.offsetTop - pos[1]) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos[0]) + "px";
+      }
+      function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+  </script>
+</body>
+
+</html>
