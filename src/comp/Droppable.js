@@ -10,7 +10,8 @@ class Droppable extends Component {
     }
   }
 
-  addItem = () => {
+  addItem = e => {
+    e.preventDefault();
     this.props.addItem({
       list: this.props.title,
       content: this.state.item
@@ -45,9 +46,13 @@ class Droppable extends Component {
       <Draggable key={i}
         item={e}
         ods={this.onDragStart}
-        deleteItem={()=>this.deleteItem(e.ID)}
+        deleteItem={() => this.deleteItem(e.ID)}
       />
     );
+  }
+
+  removeList = () => {
+    this.props.removeList(this.props.listIndex);
   }
 
   render() {
@@ -56,9 +61,16 @@ class Droppable extends Component {
         onDragOver={this.onDragOver}
         onDrop={this.onDrop}
       >
-        <h1>{this.props.title}</h1>
-        <button onClick={this.addItem}>ADD ITEM TO THIS LIST</button>
-        <input onChange={this.hc} name="item" value={this.state.item} />
+        <div className="droppable-top">
+          <h1>{this.props.title}</h1>
+          <button className="delete-button" onClick={this.removeList}>X</button>
+        </div>
+        <form autocomplete="off" onSubmit={this.addItem}>
+          <button type="submit">
+            ADD ITEM TO THIS LIST
+        </button>
+          <input onChange={this.hc} name="item" value={this.state.item} />
+        </form>
         {this.props.items.map(this.itemMapper)}
       </div>
     );

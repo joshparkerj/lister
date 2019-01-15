@@ -6,10 +6,29 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      listTitles: ['fox', 'yoda', 'dresden'],
+      listTitles: [],
+      listTitle: '',
       items: [],
       nextID: 0
     }
+  }
+
+  hc = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  addList = e => {
+    e.preventDefault();
+    this.setState({
+      listTitles: [...this.state.listTitles, this.state.listTitle],
+      listTitle: ''
+    })
+  }
+
+  removeList = listIndex => {
+    this.setState({
+      listTitles: this.state.listTitles.filter((e, i) => i !== listIndex)
+    })
   }
 
   addItem = item => {
@@ -40,11 +59,13 @@ class App extends Component {
   listMapper = (title, i) => {
     return (
       <Droppable key={i}
+        listIndex={i}
         title={title}
         items={this.state.items.filter(e => e.list === title)}
         addItem={this.addItem}
         removeItem={this.removeItem}
         moveItem={this.moveItem}
+        removeList={this.removeList}
       />
     );
   }
@@ -52,7 +73,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.listTitles.map(this.listMapper)}
+        <form autocomplete="off" onSubmit={this.addList}>
+          <button type="submit">
+            ADD ANOTHER LIST
+          </button>
+          <input onChange={this.hc}
+            name="listTitle"
+            value={this.state.listTitle}
+          />
+        </form>
+        <div className="the-lists">
+          {this.state.listTitles.map(this.listMapper)}
+        </div>
       </div>
     );
   }

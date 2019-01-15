@@ -1,5 +1,12 @@
 .App {
   font-family: Georgia;
+}
+
+.delete-button {
+  height: min-content;
+}
+
+.the-lists {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
