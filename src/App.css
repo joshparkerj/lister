@@ -2,16 +2,26 @@
   font-family: Georgia;
 }
 
-.delete-button {
+.delete-button,input {
   height: min-content;
 }
 
 .the-lists {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 form {
   margin: 20px;
   margin-bottom: 0;
+  display: flex;
+  justify-content: stretch;
+}
+
+form button {
+  font-size: 13px;
+}
+
+.droppable-top h1 {
+  margin: 0;
 }

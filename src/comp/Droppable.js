@@ -67,7 +67,7 @@ class Droppable extends Component {
         </div>
         <form autocomplete="off" onSubmit={this.addItem}>
           <button type="submit" disabled={!this.state.item}>
-            ADD ITEM TO THIS LIST
+            NEW ITEM
         </button>
           <input onChange={this.hc} name="item" value={this.state.item} />
         </form>
