@@ -56,7 +56,7 @@ const Droppable = function Droppable({
       onDrop={onDrop}
     >
       <div className="droppable-top">
-        <h1>{title}</h1>
+        <h2>{title}</h2>
         <button type="button" className="delete-button" onClick={handleRemoveList}>X</button>
       </div>
       <form autoComplete="off" onSubmit={handleAddItem}>

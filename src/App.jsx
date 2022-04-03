@@ -49,6 +49,7 @@ const App = function App() {
 
   return (
     <div className="App">
+      <h1>LISTER</h1>
       <form autoComplete="off" onSubmit={addList}>
         <button type="submit" disabled={!listTitle}>
           ADD ANOTHER LIST
