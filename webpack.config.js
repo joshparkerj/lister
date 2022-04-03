@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   mode: 'development',
   resolve: {
@@ -12,5 +14,8 @@ module.exports = {
       },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
     ],
+  },
+  output: {
+    path: path.resolve(__dirname, 'public/dist'),
   },
 };
