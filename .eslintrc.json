@@ -21,5 +21,13 @@
     },
     "ignorePatterns": [
         "serviceWorker.js"
+    ],
+    "overrides": [
+        {
+            "files": ["**/*.test.js", "**/*.test.jsx"],
+            "env": {
+                "mocha": true
+            }
+        }
     ]
 }

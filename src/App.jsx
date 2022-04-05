@@ -54,11 +54,15 @@ const App = function App() {
         <button type="submit" disabled={!listTitle}>
           ADD ANOTHER LIST
         </button>
-        <input
-          onChange={({ target }) => setListTitle(target.value)}
-          name="listTitle"
-          value={listTitle}
-        />
+        <label htmlFor="listTitle">
+          <input
+            onChange={({ target }) => setListTitle(target.value)}
+            name="listTitle"
+            id="listTitle"
+            value={listTitle}
+          />
+          LIST TITLE
+        </label>
       </form>
       <div className="the-lists">
         {listTitles.map(listMapper)}
